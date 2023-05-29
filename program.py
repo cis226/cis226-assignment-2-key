@@ -31,12 +31,19 @@ def main(*args):
 
     # Create new instance of a MazeSolver
     maze_solver = MazeSolver()
+    # If you would like to see the screen clear on each step,
+    # use the following line in place of the above one.
+    # maze_solver = MazeSolver(clear_screen=True)
 
     # Create the second maze by transposing the first maze
     maze2 = transpose_maze(maze1)
 
     # Solve the original maze
     maze_solver.solve_maze(maze1, X_START, Y_START)
+
+    # Break between solves
+    print("Press enter to solve the 2nd maze")
+    input()
 
     # Solve the transposed maze
     maze_solver.solve_maze(maze2, X_START, Y_START)
@@ -64,4 +71,19 @@ def transpose_maze(maze_to_transpose):
     original to the new transposed one. Failure to do so may lead you to only
     be able to solve the transposed one.
     """
-    return []
+    if len(maze_to_transpose) < 1 or len(maze_to_transpose[0]) < 1:
+        raise ValueError("Maze is not 2D. Can not transpose.")
+
+    # Get width and length
+    width = len(maze_to_transpose)
+    length = len(maze_to_transpose[0])
+
+    # Init a transposed maze filled with the letter "e"
+    transposed_maze = [["e"] * width for i in range(length)]
+
+    # Do the actual transpose
+    for i in range(width):
+        for j in range(length):
+            transposed_maze[j][i] = maze_to_transpose[i][j]
+
+    return transposed_maze
