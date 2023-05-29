@@ -1,5 +1,9 @@
 """Program code"""
 
+# David Barnes
+# CIS 226
+# 05-28-23
+
 # First-party imports
 from maze_solver import MazeSolver
 
